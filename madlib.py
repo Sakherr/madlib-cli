@@ -32,3 +32,27 @@ def parse_template(Str):
 def merge(temp, parts):
     return temp.format(*parts)
 
+
+
+template_path = input("Enter the path of the Madlib template file please: ")
+
+template_content = read_template(template_path)
+
+template_text, template_parts = parse_template(template_content)
+
+
+user_inputs = []
+for part in template_parts:
+    user_input = input(f" enter the {part}: ")
+    user_inputs.append(user_input)
+
+completed_text = merge(template_text, user_inputs)
+
+
+print(completed_text)
+
+output_path = "completed_madlib.txt"
+with open(output_path, 'w') as file:
+    file.write(completed_text)
+
+print(f"Your madlib output in {output_path}! ")
